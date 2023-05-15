@@ -1,8 +1,10 @@
 package com.cao.boot.config;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.cao.boot.bean.Car;
 import com.cao.boot.bean.Pet;
 import com.cao.boot.bean.User;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -18,8 +20,14 @@ import org.springframework.context.annotation.Import;
  */
 @Import({User.class, DBHelper.class})
 @Configuration(proxyBeanMethods = true)//告诉SpringBoot这是一个配置类 == 配置文件
-public class MyConfig {
+/*
+    @EnableConfigurationProperties(Car.class)：
+        将 Car 这个组件纳入容器管理
+        开启配置绑定
 
+ */
+@EnableConfigurationProperties(Car.class)
+public class MyConfig {
     @Bean
     /*
         @Bean注解：
